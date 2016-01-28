@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace COIME
 {
-    public partial class Form1 : Form
+    public partial class InputForm : Form
     {
-        public Form1()
+        public InputForm()
         {
             InitializeComponent();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.notifyIcon.Visible = false;
+            Application.Exit();
         }
     }
 }
