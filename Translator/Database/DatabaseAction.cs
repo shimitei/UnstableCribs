@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SQLite;
+using Translator.Model;
 
 namespace Translator.Database
 {
@@ -10,7 +11,7 @@ namespace Translator.Database
             using (SQLiteCommand command = new SQLiteCommand(conn))
             {
                 command.CommandText =
-                    "CREATE TABLE Lexicon("
+                    "CREATE TABLE lexicon("
                         + "id INTEGER PRIMARY KEY AUTOINCREMENT"
                         + ",word text"
                         + ",translate text"
@@ -49,5 +50,24 @@ namespace Translator.Database
             }
             return s;
         }
+
+        public static Action<SQLiteConnection, Action<Lexicon>> SelectAll = (conn, action) =>
+        {
+            using (SQLiteCommand command = new SQLiteCommand(conn))
+            {
+                command.CommandText = "SELECT * FROM lexicon;";
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var r = new Lexicon();
+                        r.Id = Convert.ToInt32(reader["id"].ToString());
+                        r.Word = reader["word"].ToString();
+                        r.Translate = reader["translate"].ToString();
+                        action(r);
+                    }
+                }
+            }
+        };
     }
 }

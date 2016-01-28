@@ -15,8 +15,7 @@ namespace Lexicon
             }
             else if (!string.IsNullOrEmpty(exportTSV))
             {
-                //TODO export
-                //DatabaseUtil.ExportFromTSV(importTSV);
+                DatabaseUtil.ExportToTSV(exportTSV);
             }
             else
             {
@@ -38,7 +37,7 @@ namespace Lexicon
 
         private static void ShowUsage()
         {
-            Console.WriteLine("Usage: lexicon [-import:filepath]");
+            Console.WriteLine("Usage: lexicon [-import:filepath] [-export:filepath]");
             //Console.WriteLine("Usage: lexicon [-import:filepath] [-export:filepath] [-translate] translate-word");
         }
     }

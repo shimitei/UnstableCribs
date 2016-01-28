@@ -7,21 +7,14 @@ namespace Translator.IO
     {
         public static void TSV(string filepath, Action<string[]> onReadLine)
         {
-            try
+            using (var sr = new StreamReader(filepath))
             {
-                using (var sr = new StreamReader(filepath))
+                while (!sr.EndOfStream)
                 {
-                    while (!sr.EndOfStream)
-                    {
-                        string line = sr.ReadLine();
-                        string[] fields = line.Split('\t');
-                        onReadLine(fields);
-                    }
+                    string line = sr.ReadLine();
+                    string[] fields = line.Split('\t');
+                    onReadLine(fields);
                 }
-            }
-            catch (Exception e)
-            {
-
             }
         }
     }

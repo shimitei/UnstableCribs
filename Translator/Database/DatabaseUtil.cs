@@ -36,5 +36,19 @@ namespace Translator.Database
                 }
             }
         }
+
+        public static void ExportToTSV(string filepath)
+        {
+            using (var helper = Open())
+            {
+                using (var sw = new System.IO.StreamWriter(filepath, false))
+                {
+                    DatabaseAction.SelectAll(helper.Connection,(r) =>
+                    {
+                        sw.WriteLine("{0}\t{1}", r.Word, r.Translate);
+                    });
+                }
+            }
+        }
     }
 }
