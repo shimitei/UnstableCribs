@@ -1,5 +1,5 @@
 ﻿using System;
-using Translator.Database;
+using Translator.Command;
 
 namespace Lexicon
 {
@@ -11,11 +11,11 @@ namespace Lexicon
             var exportTSV = CommandLineUtil.GetCommandOption("-export:", null);
             if (!string.IsNullOrEmpty(importTSV))
             {
-                DatabaseUtil.ImportFromTSV(importTSV);
+                TranslatorCommand.ImportFromTSV(importTSV);
             }
             else if (!string.IsNullOrEmpty(exportTSV))
             {
-                DatabaseUtil.ExportToTSV(exportTSV);
+                TranslatorCommand.ExportToTSV(exportTSV);
             }
             else
             {
@@ -24,8 +24,11 @@ namespace Lexicon
                 {
                     foreach (string s in list)
                     {
-                        //TODO translate
-                        //DatabaseUtil.translate(s);
+                        Console.WriteLine("TRANSLATE: {0}", s);
+                        foreach (var r in TranslatorCommand.Translate(s))
+                        {
+                            Console.WriteLine(string.Format("{0}|{1}", r.Word, r.Translator));
+                        }
                     }
                 }
                 else
@@ -37,8 +40,7 @@ namespace Lexicon
 
         private static void ShowUsage()
         {
-            Console.WriteLine("Usage: lexicon [-import:filepath] [-export:filepath]");
-            //Console.WriteLine("Usage: lexicon [-import:filepath] [-export:filepath] [-translate] translate-word");
+            Console.WriteLine("Usage: lexicon [-import:filepath] [-export:filepath] [-translate] translate-word");
         }
     }
 }

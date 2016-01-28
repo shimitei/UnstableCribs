@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\TranslatorCommand.cs" />
     <Compile Include="Database\DatabaseAction.cs" />
     <Compile Include="Database\DatabaseUtil.cs" />
     <Compile Include="IO\FileUtil.cs" />

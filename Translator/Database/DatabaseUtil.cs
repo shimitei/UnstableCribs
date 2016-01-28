@@ -2,7 +2,7 @@
 
 namespace Translator.Database
 {
-    public class DatabaseUtil
+    internal class DatabaseUtil
     {
         public static DatabaseConnectionHelper Open()
         {
@@ -45,7 +45,7 @@ namespace Translator.Database
                 {
                     DatabaseAction.SelectAll(helper.Connection,(r) =>
                     {
-                        sw.WriteLine("{0}\t{1}", r.Word, r.Translate);
+                        sw.WriteLine("{0}\t{1}", r.Word, r.Translator);
                     });
                 }
             }

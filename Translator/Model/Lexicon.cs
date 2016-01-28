@@ -4,6 +4,6 @@
     {
         public int Id;
         public string Word;
-        public string Translate;
+        public string Translator;
     }
 }

@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Translator.Database
 {
-    public class DatabaseConnectionHelper : IDisposable
+    internal class DatabaseConnectionHelper : IDisposable
     {
         public SQLiteConnection Connection { get; set; }
 

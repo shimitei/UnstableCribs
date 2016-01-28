@@ -4,7 +4,7 @@ using Translator.Model;
 
 namespace Translator.Database
 {
-    class DatabaseAction
+    internal class DatabaseAction
     {
         public static Action<SQLiteConnection> CreateTable = (conn) =>
         {
@@ -14,7 +14,7 @@ namespace Translator.Database
                     "CREATE TABLE lexicon("
                         + "id INTEGER PRIMARY KEY AUTOINCREMENT"
                         + ",word text"
-                        + ",translate text"
+                        + ",translator text"
                     + ");";
 
                 command.ExecuteNonQuery();
@@ -35,7 +35,7 @@ namespace Translator.Database
             using (SQLiteCommand command = new SQLiteCommand(conn))
             {
                 command.CommandText = string.Format(
-                    "INSERT INTO lexicon(word, translate) VALUES ('{0}', '{1}')",
+                    "INSERT INTO lexicon(word, translator) VALUES ('{0}', '{1}')",
                     SqlSanitize(key), SqlSanitize(value));
                 command.ExecuteNonQuery();
             }
@@ -60,14 +60,38 @@ namespace Translator.Database
                 {
                     while (reader.Read())
                     {
-                        var r = new Lexicon();
-                        r.Id = Convert.ToInt32(reader["id"].ToString());
-                        r.Word = reader["word"].ToString();
-                        r.Translate = reader["translate"].ToString();
-                        action(r);
+                        action(ToLexicon(reader));
                     }
                 }
             }
         };
+
+        private static Lexicon ToLexicon(SQLiteDataReader reader)
+        {
+            var result = new Lexicon();
+            result.Id = Convert.ToInt32(reader["id"].ToString());
+            result.Word = reader["word"].ToString();
+            result.Translator = reader["translator"].ToString();
+            return result;
+        }
+
+        public static Action<SQLiteConnection, string, Action<Lexicon>> Select = (conn, s, action) =>
+        {
+            using (SQLiteCommand command = new SQLiteCommand(conn))
+            {
+                command.CommandText = string.Format(
+                    "SELECT * FROM lexicon WHERE translator like '%{0}%';",
+                    SqlSanitize(s)
+                    );
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        action(ToLexicon(reader));
+                    }
+                }
+            }
+        };
+
     }
 }
