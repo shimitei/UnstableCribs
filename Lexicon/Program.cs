@@ -7,7 +7,7 @@ namespace Lexicon
     {
         static void Main(string[] args)
         {
-            var importTSV = "lexicon.txt";// CommandLineUtil.GetCommandOption("-import:", null);
+            var importTSV = CommandLineUtil.GetCommandOption("-import:", null);
             var exportTSV = CommandLineUtil.GetCommandOption("-export:", null);
             if (!string.IsNullOrEmpty(importTSV))
             {

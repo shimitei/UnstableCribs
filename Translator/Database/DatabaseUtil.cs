@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.SQLite;
-using Translator.IO;
+﻿using Translator.IO;
 
 namespace Translator.Database
 {
@@ -8,7 +6,7 @@ namespace Translator.Database
     {
         public static DatabaseConnectionHelper Open()
         {
-            var result = new DatabaseConnectionHelper(Statics.DbFilename, DatabaseAction.OnCreateDatabaseAction);
+            var result = new DatabaseConnectionHelper(Statics.DbFilename, DatabaseAction.CreateTable);
             return result;
         }
 
@@ -18,30 +16,23 @@ namespace Translator.Database
             {
                 using (var transaction = helper.Connection.BeginTransaction())
                 {
-                    using (var command = new SQLiteCommand(helper.Connection))
+                    // truncate table
+                    DatabaseAction.TruncateTable(helper.Connection);
+
+                    // insert data
+                    FileUtil.TSV(filepath, ar =>
                     {
-                        FileUtil.TSV(filepath, ar =>
+                        if (ar.Length >= 2)
                         {
-                            var arLength = ar.Length;
-                            if (arLength >= 2)
-                            {
-                                // TSV line
-                                //   KEY[tab]A[tab]B[tab]C
-                                // to
-                                //   [KEY,A],[KEY,B],[KEY,C]
-                                // INSERT INTO lexicon(input, output) VALUES (?, KEY);
-                                var key = ar[0];
-                                for (var i = 1; i < arLength; i++)
-                                {
-                                    command.CommandText = string.Format(
-                                        "INSERT INTO lexicon(input, output) VALUES ('{0}', '{1}')",
-                                        ar[i], key);
-                                    command.ExecuteNonQuery();
-                                }
-                            }
-                        });
-                        transaction.Commit();
-                    }
+                            // TSV line
+                            //   KEY[tab]A/B/C
+                            // insert data
+                            //   key:'KEY'
+                            //   value:'A/B/C'
+                            DatabaseAction.InsertData(helper.Connection, ar[0], ar[1]);
+                        }
+                    });
+                    transaction.Commit();
                 }
             }
         }
