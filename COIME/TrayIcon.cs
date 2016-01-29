@@ -54,13 +54,17 @@ namespace COIME
         {
             contextMenuStrip.BeginInvoke((MethodInvoker)(() =>
             {
-                if (InputForm == null || InputForm.IsDisposed)
+                if (InputForm == null)
                 {
                     InputForm = new InputForm();
-                    InputForm.Show();
+                    InputForm.StartPosition = FormStartPosition.CenterScreen;
+                    InputForm.ShowDialog();
+                    InputForm.StartPosition = FormStartPosition.Manual;
                 }
-                InputForm.WindowState = FormWindowState.Normal;
-                InputForm.Activate();
+                else if (!InputForm.Visible)
+                {
+                    InputForm.ShowDialog();
+                }
             }));
         }
 
