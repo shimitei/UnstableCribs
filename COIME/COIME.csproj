@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Control\NotifyIconUtil.cs" />
     <Compile Include="TrayIcon.cs">
       <SubType>Component</SubType>
     </Compile>

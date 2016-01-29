@@ -1,4 +1,5 @@
-﻿using System;
+﻿using COIME.Common.Control;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -30,20 +31,7 @@ namespace COIME
             // for Invoke (need Control's handle creation)
             var dummy = contextMenuStrip.Handle;
 
-            // setup notify icon
-            while (true)
-            {
-                int tickCount = Environment.TickCount;
-                notifyIcon.Visible = true;
-                tickCount = Environment.TickCount - tickCount;
-                if (tickCount < 4000)
-                {
-                    // Success if less than 4 seconds
-                    break;
-                }
-                // retry
-                notifyIcon.Visible = false;
-            }
+            NotifyIconUtil.Setup(notifyIcon);
         }
 
         private void notifyIcon_Click(object sender, EventArgs e)
