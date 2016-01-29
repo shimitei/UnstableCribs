@@ -16,11 +16,5 @@ namespace COIME
         {
             InitializeComponent();
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.notifyIcon.Visible = false;
-            Application.Exit();
-        }
     }
 }

@@ -5,7 +5,7 @@ namespace COIME
 {
     static class Program
     {
-        static InputForm InputForm;
+        static TrayIcon TrayIcon;
 
         /// <summary>
         /// Entry point
@@ -16,10 +16,8 @@ namespace COIME
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Setup
-            InputForm = new InputForm();
-            // for Invoke (need Control's handle creation)
-            var dummy = InputForm.Handle;
+            TrayIcon = new TrayIcon();
+            TrayIcon.Setup();
 
             Application.Run();
         }

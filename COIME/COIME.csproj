@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TrayIcon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TrayIcon.Designer.cs">
+      <DependentUpon>TrayIcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TrayIcon.resx">
+      <DependentUpon>TrayIcon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputForm.resx">
       <DependentUpon>InputForm.cs</DependentUpon>
     </EmbeddedResource>
