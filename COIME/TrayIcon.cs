@@ -22,12 +22,28 @@ namespace COIME
 
         public void Setup()
         {
-            // for Invoke (need Control's handle creation)
-            var dummy = contextMenuStrip.Handle;
             // event
             notifyIcon.DoubleClick += new System.EventHandler(notifyIcon_Click);
             // context menu
             exitStripMenuItem.Click += new System.EventHandler(exitToolStripMenuItem_Click);
+
+            // for Invoke (need Control's handle creation)
+            var dummy = contextMenuStrip.Handle;
+
+            // setup notify icon
+            while (true)
+            {
+                int tickCount = Environment.TickCount;
+                notifyIcon.Visible = true;
+                tickCount = Environment.TickCount - tickCount;
+                if (tickCount < 4000)
+                {
+                    // Success if less than 4 seconds
+                    break;
+                }
+                // retry
+                notifyIcon.Visible = false;
+            }
         }
 
         private void notifyIcon_Click(object sender, EventArgs e)
