@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Control\NotifyIconUtil.cs" />
+    <Compile Include="Common\Controls\NotifyIconUtil.cs" />
     <Compile Include="TrayIcon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +102,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AutocompleteMenu\AutocompleteMenu.csproj">
+      <Project>{43cbc9aa-6a8e-463f-83a9-aff3124afdb6}</Project>
+      <Name>AutocompleteMenu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Translator\Translator.csproj">
       <Project>{dece342d-fd48-4b17-971c-f970d3e39c52}</Project>
       <Name>Translator</Name>

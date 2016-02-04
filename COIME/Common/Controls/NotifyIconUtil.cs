@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace COIME.Common.Control
+namespace COIME.Common.Controls
 {
     public class NotifyIconUtil
     {
