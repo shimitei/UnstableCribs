@@ -93,5 +93,24 @@ namespace Translator.Database
             }
         };
 
+        public static Action<SQLiteConnection, string, uint, Action<Lexicon>> SelectLimit = (conn, s, limit, action) =>
+        {
+            using (SQLiteCommand command = new SQLiteCommand(conn))
+            {
+                //TODO priority(Forward match), order by
+                command.CommandText = string.Format(
+                    "SELECT * FROM lexicon WHERE translator LIKE '%{0}%' LIMIT {1};",
+                    SqlSanitize(s),
+                    limit
+                    );
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        action(ToLexicon(reader));
+                    }
+                }
+            }
+        };
     }
 }

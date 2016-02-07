@@ -16,6 +16,16 @@ namespace Translator.Command
             DatabaseUtil.ExportToTSV(filepath);
         }
 
+        public static List<Lexicon> Translate(DatabaseConnection dc, string search, uint limit)
+        {
+            var result = new List<Lexicon>();
+            DatabaseAction.SelectLimit(dc.Connection, search, limit, (r) =>
+            {
+                result.Add(r);
+            });
+            return result;
+        }
+
         public static List<Lexicon> Translate(string s)
         {
             List<Lexicon> result;
