@@ -4,11 +4,17 @@ using System.Diagnostics;
 
 namespace Translator.Database
 {
-    internal class DatabaseConnectionHelper : IDisposable
+    public class DatabaseConnection : IDisposable
     {
         public SQLiteConnection Connection { get; set; }
 
-        public DatabaseConnectionHelper(string dbFilename, Action<SQLiteConnection> createAction = null)
+        public static DatabaseConnection Open()
+        {
+            var result = new DatabaseConnection(Statics.DbFilename, DatabaseAction.CreateTable);
+            return result;
+        }
+
+        public DatabaseConnection(string dbFilename, Action<SQLiteConnection> createAction = null)
         {
             if (System.IO.File.Exists(dbFilename))
             {

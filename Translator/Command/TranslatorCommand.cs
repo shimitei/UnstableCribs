@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Translator.Database;
 using Translator.Model;
 
@@ -20,14 +19,14 @@ namespace Translator.Command
         public static List<Lexicon> Translate(string s)
         {
             List<Lexicon> result;
-            using (var helper = DatabaseUtil.Open())
+            using (var helper = DatabaseConnection.Open())
             {
                 result = Translate(helper, s);
             }
             return result;
         }
 
-        private static List<Lexicon> Translate(DatabaseConnectionHelper helper, string s)
+        private static List<Lexicon> Translate(DatabaseConnection helper, string s)
         {
             var result = new List<Lexicon>();
             DatabaseAction.Select(helper.Connection, s, (r) =>

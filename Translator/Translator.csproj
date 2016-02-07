@@ -69,7 +69,7 @@
     <Compile Include="IO\FileUtil.cs" />
     <Compile Include="Model\Lexicon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Database\DatabaseConnectionHelper.cs" />
+    <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Statics.cs" />
   </ItemGroup>
   <ItemGroup>

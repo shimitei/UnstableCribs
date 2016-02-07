@@ -4,15 +4,9 @@ namespace Translator.Database
 {
     internal class DatabaseUtil
     {
-        public static DatabaseConnectionHelper Open()
-        {
-            var result = new DatabaseConnectionHelper(Statics.DbFilename, DatabaseAction.CreateTable);
-            return result;
-        }
-
         public static void ImportFromTSV(string filepath)
         {
-            using (var helper = Open())
+            using (var helper = DatabaseConnection.Open())
             {
                 using (var transaction = helper.Connection.BeginTransaction())
                 {
@@ -39,7 +33,7 @@ namespace Translator.Database
 
         public static void ExportToTSV(string filepath)
         {
-            using (var helper = Open())
+            using (var helper = DatabaseConnection.Open())
             {
                 using (var sw = new System.IO.StreamWriter(filepath, false))
                 {
