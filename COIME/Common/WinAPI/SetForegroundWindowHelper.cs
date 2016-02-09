@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace COIME
+namespace My.Common.WinAPI
 {
     /// <summary>
     /// http://tomoemon.hateblo.jp/entry/20080430/p2

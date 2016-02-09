@@ -1,4 +1,4 @@
-﻿using COIME.Common.Controls;
+﻿using My.Common.Controls;
 using NHotkey;
 using NHotkey.WindowsForms;
 using System;
