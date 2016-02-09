@@ -36,6 +36,7 @@ namespace COIME
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputForm));
             this.autocompleteMenu = new AutocompleteMenuNS.AutocompleteMenu();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.comboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // autocompleteMenu
@@ -57,11 +58,21 @@ namespace COIME
             this.textBox.TabIndex = 0;
             this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
+            // comboBox
+            // 
+            this.comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox.FormattingEnabled = true;
+            this.comboBox.Location = new System.Drawing.Point(12, 55);
+            this.comboBox.Name = "comboBox";
+            this.comboBox.Size = new System.Drawing.Size(254, 26);
+            this.comboBox.TabIndex = 1;
+            // 
             // InputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Controls.Add(this.comboBox);
             this.Controls.Add(this.textBox);
             this.Name = "InputForm";
             this.TopMost = true;
@@ -73,6 +84,7 @@ namespace COIME
         #endregion
         private AutocompleteMenuNS.AutocompleteMenu autocompleteMenu;
         private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.ComboBox comboBox;
     }
 }
 
