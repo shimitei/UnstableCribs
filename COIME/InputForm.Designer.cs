@@ -52,9 +52,9 @@ namespace COIME
             // textBox
             // 
             this.autocompleteMenu.SetAutocompleteMenu(this.textBox, null);
-            this.textBox.Location = new System.Drawing.Point(12, 12);
+            this.textBox.Location = new System.Drawing.Point(1, 2);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(254, 25);
+            this.textBox.Size = new System.Drawing.Size(405, 25);
             this.textBox.TabIndex = 0;
             this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
@@ -62,20 +62,25 @@ namespace COIME
             // 
             this.comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(12, 55);
+            this.comboBox.Location = new System.Drawing.Point(1, 46);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(254, 26);
+            this.comboBox.Size = new System.Drawing.Size(405, 26);
             this.comboBox.TabIndex = 1;
             // 
             // InputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 244);
+            this.ClientSize = new System.Drawing.Size(408, 75);
+            this.ControlBox = false;
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.textBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.Name = "InputForm";
+            this.ShowInTaskbar = false;
             this.TopMost = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

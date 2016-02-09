@@ -26,6 +26,16 @@ namespace COIME
             else if (e.Control && e.KeyCode == Keys.Space)
             {
                 autocompleteMenu.Show(textBox, true);
+                e.Handled = true;
+            }
+        }
+
+        private void InputForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                Close();
             }
         }
 
@@ -62,6 +72,7 @@ namespace COIME
             if (pid != 0)
             {
                 SetForegroundWindowHelper.Wakeup(pid);
+                //FIXME escape
                 SendKeys.Send(s);
             }
         }
