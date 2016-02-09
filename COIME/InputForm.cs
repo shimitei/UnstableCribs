@@ -32,6 +32,8 @@ namespace COIME
         private void setupProcessComboBox()
         {
             var list = new List<Process>(Process.GetProcesses());
+            var fp = GetForegroundWindowUtil.GetForegroundProcess();
+            if (fp != null) list.Insert(0, fp);
             comboBox.DataSource = list.Select(x => new {
                 pid = x.Id,
                 name = (string.IsNullOrEmpty(x.MainWindowTitle))

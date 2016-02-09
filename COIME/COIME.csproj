@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Controls\NotifyIconUtil.cs" />
+    <Compile Include="Common\WinAPI\GetForegroundWindowUtil.cs" />
     <Compile Include="Common\WinAPI\SetForegroundWindowHelper.cs" />
     <Compile Include="SuggestCollection.cs" />
     <Compile Include="TrayIcon.cs">
